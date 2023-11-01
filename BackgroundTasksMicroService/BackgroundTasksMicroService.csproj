@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-BackgroundTasksMicroService-cfa2f02b-9d6f-4c75-8ee5-235352cfad41</UserSecretsId>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerfileContext>..\UserOperationsMicroService</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>

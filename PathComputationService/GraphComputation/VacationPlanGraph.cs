@@ -64,7 +64,7 @@ namespace PathComputationMicroService.GraphComputation
                     TripsPlan plan = new TripsPlan
                     {
                         Trips = trips,
-                        Price = cost,
+                        Price = currentCost,
                     };
                  
                     if ( trips.Count-1  == vacationPlan.CityDaysStayed.Count)

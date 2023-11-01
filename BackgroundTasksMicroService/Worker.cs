@@ -16,12 +16,15 @@ namespace BackgroundTasksMicroService
         private readonly ILogger<Worker> _logger;
         private readonly IAppConfiguration _appConfiguration;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IHostApplicationLifetime _hostApplicationLifetime;
 
-        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, IAppConfiguration appConfig)
+
+        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, IAppConfiguration appConfig, IHostApplicationLifetime hostApplicationLifetime)
         {
             _logger = logger;
             _appConfiguration = appConfig;
             _serviceProvider = serviceProvider;
+            _hostApplicationLifetime = hostApplicationLifetime;
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -66,7 +69,7 @@ namespace BackgroundTasksMicroService
                     }
 
                 }
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                _hostApplicationLifetime.StopApplication();
 
                 await Task.Delay(1000, stoppingToken);
             }
