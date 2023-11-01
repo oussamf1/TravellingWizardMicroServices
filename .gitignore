@@ -1,0 +1,10 @@
+**/.vs/
+/UserOperationsMicroService/bin/
+/UserOperationsMicroService/obj/
+/UserOperationsMicroService/Properties/launchSettings.json
+/UserOperationsMicroService/*.user
+
+/PathComputationService/bin/
+/PathComputationService/obj/
+/PathComputationService/Properties/launchSettings.json
+/PathComputationService/*.user
