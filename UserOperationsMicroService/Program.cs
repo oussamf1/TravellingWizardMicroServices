@@ -39,6 +39,7 @@ builder.Services.AddScoped<IJwtTokenOpsServicecs,JwtTokenOpsServicecs>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IUserActionsService, UserActionsService>();
 
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost3000", builder =>
@@ -71,6 +72,16 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
