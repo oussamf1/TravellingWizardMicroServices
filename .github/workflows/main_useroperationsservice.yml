@@ -24,7 +24,7 @@ jobs:
        
       - name: Run EF Core migrations
         run: 
-          dotnet-ef database update 
+          dotnet ef database update 
 
       - name: Build UserOperationsMicroService
         run: dotnet build -c Release UserOperationsMicroService/UserOperationsMicroService.csproj
