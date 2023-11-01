@@ -1,0 +1,10 @@
+**/.vs/
+/UserOperationsMicroService/bin/
+/UserOperationsMicroService/obj/
+
+
+/PathComputationService/obj/
+
+/Shared/obj/
+/Shared/bin/
+
