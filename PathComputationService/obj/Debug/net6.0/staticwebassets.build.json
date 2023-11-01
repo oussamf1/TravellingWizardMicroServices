@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zrMwjDGBnCBBmXipT+N5H7N97Aikjsfbca6WmIB2H3w=",
+  "Source": "PathComputationMicroService",
+  "BasePath": "_content/PathComputationMicroService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

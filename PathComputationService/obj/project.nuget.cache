@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "8Mlky9IgFrjcAN94w0ihe1pRG4f6e6nLphT0MtTzptThA9OVMOeNwamPmQ+TLK59QTa8kbE3WlkenvseS1M0hQ==",
+  "success": true,
+  "projectFilePath": "C:\\TravellingWizardMicroServices\\PathComputationService\\PathComputationMicroService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools\\9.7.2996\\google.ortools.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools.runtime.linux-arm64\\9.7.2996\\google.ortools.runtime.linux-arm64.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools.runtime.linux-x64\\9.7.2996\\google.ortools.runtime.linux-x64.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools.runtime.osx-arm64\\9.7.2996\\google.ortools.runtime.osx-arm64.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools.runtime.osx-x64\\9.7.2996\\google.ortools.runtime.osx-x64.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.ortools.runtime.win-x64\\9.7.2996\\google.ortools.runtime.win-x64.9.7.2996.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\google.protobuf\\3.23.3\\google.protobuf.3.23.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Oussama\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "sFfdpZAR48697mv6w5l0rtwhWp8nnMsDpQMNJcxCX0E=",
+  "Source": "UserOperationsMicroService",
+  "BasePath": "_content/UserOperationsMicroService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
