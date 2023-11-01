@@ -27,7 +27,7 @@ jobs:
        
       - name: Run EF Core migrations
         run: 
-          dotnet ef database update -p DotNetCoreSqlDb  --connection '${{ secrets.DBCONNECTIONSTRING }}'
+          dotnet ef database update --project UserOperationsMicroService/UserOperationsMicroService.csproj
 
 
       - name: Build UserOperationsMicroService
