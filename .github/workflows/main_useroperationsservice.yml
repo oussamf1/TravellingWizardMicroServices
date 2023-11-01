@@ -26,8 +26,9 @@ jobs:
         run: dotnet tool install --global dotnet-ef
        
       - name: Run EF Core migrations
-        run: 
-          dotnet ef database update  --project UserOperationsMicroService/UserOperationsMicroService.csproj  --connection '${{ secrets.DBCONNECTIONSTRING }}'
+        run: |
+          dotnet tool restore
+          dotnet ef database update -p DotNetCoreSqlDb  --project UserOperationsMicroService/UserOperationsMicroService.csproj  --connection '${{ secrets.DBCONNECTIONSTRING }}'
 
 
       - name: Build UserOperationsMicroService
