@@ -1,0 +1,25 @@
+name: Build and Push to ACR
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        run: docker buildx create --use
+
+      - name: Build and push Docker image to ACR
+        env:
+          ACR_NAME: ${{ secrets.ACR_NAME }}
+        run: |
+          docker build -t $ACR_NAME.azurecr.io/background-service:latest .
+          docker login $ACR_NAME.azurecr.io -u $ACR_NAME -p ${{ secrets.AZURE_CREDENTIALS }}
+          docker push $ACR_NAME.azurecr.io/background-service:latest
