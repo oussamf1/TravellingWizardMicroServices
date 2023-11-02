@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8Mlky9IgFrjcAN94w0ihe1pRG4f6e6nLphT0MtTzptThA9OVMOeNwamPmQ+TLK59QTa8kbE3WlkenvseS1M0hQ==",
+  "dgSpecHash": "V/JkPgJOuunA1OWHIld9xIjRLnbwpoRHPxkcBS/FAJv9yqd2vjT8cWbAaIXUcJkAw2IAw7MqrYnNLNq7WkgLfw==",
   "success": true,
   "projectFilePath": "C:\\TravellingWizardMicroServices\\PathComputationService\\PathComputationMicroService.csproj",
   "expectedPackageFiles": [

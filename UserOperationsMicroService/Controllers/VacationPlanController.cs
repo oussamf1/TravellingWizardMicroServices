@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.Models;
 using Shared.Services.Interface;
 using System.Numerics;
 using System.Security.Claims;

@@ -1,4 +1,5 @@
 ﻿using UserOperationsMicroService.DTOs;
+using Shared.Models;
 
 namespace UserOperationsMicroService.Services.Interface
 {

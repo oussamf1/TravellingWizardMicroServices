@@ -7,7 +7,6 @@ using System;
 using System.Net.Http.Json;
 using System.Numerics;
 using System.Text;
-using UserOperationsMicroService.DTOs;
 
 namespace BackgroundTasksMicroService
 {

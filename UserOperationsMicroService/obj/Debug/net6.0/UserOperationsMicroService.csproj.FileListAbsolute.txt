@@ -179,3 +179,4 @@ C:\TravellingWizardMicroServices\UserOperationsMicroService\obj\Debug\net6.0\Use
 C:\TravellingWizardMicroServices\UserOperationsMicroService\obj\Debug\net6.0\UserOperationsMicroService.genruntimeconfig.cache
 C:\TravellingWizardMicroServices\UserOperationsMicroService\obj\Debug\net6.0\ref\UserOperationsMicroService.dll
 C:\TravellingWizardMicroServices\UserOperationsMicroService\obj\Debug\net6.0\UserOperationsMicroService.MvcApplicationPartsAssemblyInfo.cs
+C:\TravellingWizardMicroServices\UserOperationsMicroService\bin\Debug\net6.0\DeploymentConfig\DEV-Azure\appsettings.json

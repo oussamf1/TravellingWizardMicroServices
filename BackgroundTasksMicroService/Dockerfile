@@ -18,7 +18,7 @@ RUN dotnet build "BackgroundTasksMicroService.csproj" -c Release -o /app/build
 
 # Publish the application
 FROM build AS publish
-RUN dotnet publish "BackgroundTasksMicroService.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "/src/BackgroundTasksMicroService" -c Release -o /app/publish /p:UseAppHost=false
 
 # Use the .NET 7.0 runtime image as the final image
 FROM mcr.microsoft.com/dotnet/runtime:7.0 AS final
