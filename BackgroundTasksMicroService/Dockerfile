@@ -4,9 +4,10 @@ WORKDIR /src
 
 # Copy the project files and restore dependencies
 COPY ["BackgroundTasksMicroService/BackgroundTasksMicroService.csproj", "BackgroundTasksMicroService/"]
-COPY ["UserOperationsMicroService/UserOperationsMicroService.csproj", "UserOperationsMicroService/"]
 COPY ["Shared/Shared.csproj", "Shared/"]
 RUN dotnet restore "BackgroundTasksMicroService/BackgroundTasksMicroService.csproj"
+RUN dotnet restore "Shared/Shared.csproj"
+
 
 # Copy the source code
 COPY . .
