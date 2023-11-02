@@ -20,6 +20,6 @@ jobs:
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
         run: |
-          docker build -t $ACR_NAME.azurecr.io/your-image-name:latest -f ./BackgroundTasksMicroService/Dockerfile .
+          docker build -t $ACR_NAME.azurecr.io/background-container-service:latest -f ./BackgroundTasksMicroService/Dockerfile 
           docker login $ACR_NAME.azurecr.io -u $ACR_NAME -p ${{ secrets.AZURE_CREDENTIALS }}
-          docker push $ACR_NAME.azurecr.io/your-image-name:latest
+          docker push $ACR_NAME.azurecr.io/background-container-service:latest
