@@ -35,4 +35,5 @@ jobs:
         env:
           ACR_NAME: ${{ secrets.ACR_NAME }}
         run: |
-          az container create --resource-group TravellingWizard --name background-service-container --image $ACR_NAME.azurecr.io/background-service:latest --cpu 0.5 --memory 1.5Gi --os-type Linux --restart-policy Never
+          az container create --resource-group TravellingWizard --name background-service-container --image $ACR_NAME.azurecr.io/background-service:latest --cpu 0.5 --memory 1.5 --os-type Linux --restart-policy Never
+
