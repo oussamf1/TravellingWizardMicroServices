@@ -55,4 +55,4 @@ jobs:
 
       - name: Overwrite appsettings.json with appsettings.Development.json
         run: |
-          cp -f UserOperationsMicroService/appsettings.Development.json UserOperationsMicroService/appsettings.json
+          cat -f UserOperationsMicroService/appsettings.Development.json UserOperationsMicroService/appsettings.json
