@@ -5,5 +5,7 @@
         public string DatabaseConnectionString { get; set; }
 
         public string JwtSecret { get; set; }
+
+        public string FrontEndUrl { get; set; }
     }
 }

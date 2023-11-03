@@ -18,6 +18,7 @@ IConfigurationRoot config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .AddEnvironmentVariables()
     .Build();
+
 var appConfig = new AppConfiguration(config);
 
 // Add services to the container.
@@ -42,13 +43,12 @@ builder.Services.AddScoped<IUserActionsService, UserActionsService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost3000", builder =>
+    options.AddPolicy("AllowClientFront", builder =>
     {
-        builder.WithOrigins("http://localhost:3000")
+        builder.WithOrigins(appConfig.FrontEndUrl)
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
-
     });
 });
 
@@ -91,7 +91,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowLocalhost3000");
+app.UseCors("AllowClientFront");
 
 app.UseAuthentication();
 
