@@ -2,11 +2,18 @@
 using System.Net;
 using Shared.Services.Interface;
 using Shared.Models;
+using Shared.Repos.Interface;
 
 namespace Shared.Services.Concrete
 {
     public class EmailService : IEmailService
     {
+        public IEmailTemplateRepo _emailTemplateRepo;
+        public EmailService(IEmailTemplateRepo emailTemplateRepo)
+        {
+            _emailTemplateRepo = emailTemplateRepo;
+        }
+
         public void sendEmail( string recipient, string subject, string body)
         {
 
@@ -52,21 +59,31 @@ namespace Shared.Services.Concrete
                     return "Default Email Body";
             }
         }
+        private async Task<string> GetEmailContent(EmailType emailType)
+        {
+            switch (emailType)
+            {
+                case EmailType.Confirmation:
+                    var emailTemplate1 = await _emailTemplateRepo.Get(2);
+                    return emailTemplate1.Content;
+                case EmailType.Registration:
+                    var emailTemplate2 = await _emailTemplateRepo.Get(1);
+                    return emailTemplate2.Content;
+                case EmailType.SuggestPlans:
+                    return "Vacation plans by Travelling Wizard";
+
+                default:
+                    return "Default Email Body";
+            }
+
+        }
 
         public async Task SendConfirmationEmail(User user, string confirmationUrl)
         {
             string subject = GetEmailSubject(EmailType.Confirmation);
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string templateFolderPath = Path.Combine(currentDirectory, "EmailTemplates");
-            string templateFileName = "confirmation-email.html"; 
-
-            string templateFilePath = Path.Combine(templateFolderPath, templateFileName);
-
-            string emailTemplate = File.ReadAllText(templateFilePath);
+            string emailTemplate =await GetEmailContent(EmailType.Confirmation);
             emailTemplate = emailTemplate.Replace("{email}", user.Email);
-            emailTemplate = File.ReadAllText(templateFilePath);
             emailTemplate = emailTemplate.Replace("{confirmationLink}", confirmationUrl);
-
             sendEmail(user.Email, subject, emailTemplate);
         }
 

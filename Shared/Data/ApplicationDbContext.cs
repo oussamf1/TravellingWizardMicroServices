@@ -15,5 +15,8 @@ namespace Shared.Data
 
         public DbSet<VacationPlan> VacationPlans { get; set; }
 
+        public DbSet<EmailTemplate> EmailTemplates { get; set; }
+
+
     }
 }

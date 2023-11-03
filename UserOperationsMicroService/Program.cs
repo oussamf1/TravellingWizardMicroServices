@@ -33,6 +33,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IAppConfiguration>(_ => appConfig);
 builder.Services.AddScoped<IUserRepo,UserRepo>();
 builder.Services.AddScoped<IVacationPlanRepo,VacationPlanRepo>();
+builder.Services.AddScoped<IEmailTemplateRepo, EmailTemplateRepo>();
 builder.Services.AddScoped<IVacationPlanService,VacationPlanService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordComputationService,PasswordComputationService>();
