@@ -20,10 +20,6 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
-
-      - name: Overwrite appsettings.json with appsettings.Azure.json
-        run: cp dev-config/appsettings.Azure.json appsettings.json
-
       - name: Build with dotnet
         run: dotnet build --configuration Release UserOperationsMicroService/UserOperationsMicroService.csproj
 
