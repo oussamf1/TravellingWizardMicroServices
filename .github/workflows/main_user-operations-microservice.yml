@@ -1,4 +1,7 @@
-name: Build and deploy ASP.Net Core app to Azure Web App - userOperationsService
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy ASP.Net Core app to Azure Web App - user-operations-microservice
 
 on:
   push:
@@ -16,16 +19,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '7.x'
           include-prerelease: true
 
-      - name: Overwrite appssettings.js
-        run: cp UserOperationsMicroService/DeploymentConfig/appsettings.json UserOperationsMicroService/appsettings.json
-          
-      - name: Build UserOperationsMicroService
-        run: dotnet build -c Release UserOperationsMicroService/UserOperationsMicroService.csproj
+      - name: Build with dotnet
+        run: dotnet build --configuration Release UserOperationsMicroService/UserOperationsMicroService.csproj
 
-      - name: dotnet UserOperationsMicroService
+      - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp UserOperationsMicroService/UserOperationsMicroService.csproj
 
       - name: Upload artifact for deployment job
@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'userOperationsService'
+          app-name: 'user-operations-microservice'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C5AECBDA6DD84A15B9DD633F36C664D8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09225BE891F465ABCFFE3DDBE38F353 }}
           package: .
