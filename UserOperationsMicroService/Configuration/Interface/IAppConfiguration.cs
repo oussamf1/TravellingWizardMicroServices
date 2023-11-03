@@ -7,5 +7,6 @@
         public string JwtSecret { get; set; }
 
         public string FrontEndUrl { get; set; }
+        public string UserOperationMicroServiceUrl { get; set; }
     }
 }

@@ -5,7 +5,8 @@ using System.Text.Json;
 using Shared.Services.Interface;
 using Shared.Repos.Interface;
 using Shared.Models;
-
+using UserOperationsMicroService.Configuration.Interface;
+using EllipticCurve;
 
 namespace UserOperationsMicroService.Services.Concrete
 {
@@ -16,13 +17,15 @@ namespace UserOperationsMicroService.Services.Concrete
         private readonly IJwtTokenOpsServicecs _jwtTokenOpsService;
         private readonly IEmailService _emailService;
         private readonly IVacationPlanRepo _vacationPlanRepo;
-        public UserActionsService(IVacationPlanRepo vacationPlanRepo, IPasswordComputationService pwdComputationService, IUserRepo userRepo, IJwtTokenOpsServicecs jwtTokenOpsService, IEmailService emailService)
+        private readonly IAppConfiguration _appConfiguration;
+        public UserActionsService(IAppConfiguration appConfiguration, IVacationPlanRepo vacationPlanRepo, IPasswordComputationService pwdComputationService, IUserRepo userRepo, IJwtTokenOpsServicecs jwtTokenOpsService, IEmailService emailService)
         {
             _pwdComputationService = pwdComputationService;
             _userRepo = userRepo;
             _jwtTokenOpsService = jwtTokenOpsService;
             _emailService = emailService;
             _vacationPlanRepo= vacationPlanRepo;
+            _appConfiguration = appConfiguration;
         }
         public async Task<bool> ConfirmUserEmail(string token)
         {
@@ -88,7 +91,7 @@ namespace UserOperationsMicroService.Services.Concrete
                     ConfirmationToken = GenerateConfirmationToken()
                 };
 
-                string confirmationLink = $"https://localhost:44366/api/Authentication/ConfirmAccount?token={user.ConfirmationToken}";
+                string confirmationLink = $"{_appConfiguration.UserOperationMicroServiceUrl}/api/Authentication/ConfirmAccount?token={user.ConfirmationToken}";
 
                 await _emailService.SendConfirmationEmail(user, confirmationLink);
 
