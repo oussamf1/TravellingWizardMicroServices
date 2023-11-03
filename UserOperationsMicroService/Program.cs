@@ -14,8 +14,10 @@ using Shared.Repos.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 IConfigurationRoot config = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.Development.json", optional: true)
     .AddEnvironmentVariables()
     .Build();
 

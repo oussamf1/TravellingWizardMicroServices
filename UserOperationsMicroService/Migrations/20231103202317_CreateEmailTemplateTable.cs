@@ -10,9 +10,6 @@ namespace UserOperationsMicroService.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Tests");
-
             migrationBuilder.CreateTable(
                 name: "EmailTemplates",
                 columns: table => new
@@ -33,19 +30,6 @@ namespace UserOperationsMicroService.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EmailTemplates");
-
-            migrationBuilder.CreateTable(
-                name: "Tests",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Bla = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tests", x => x.Id);
-                });
         }
     }
 }
