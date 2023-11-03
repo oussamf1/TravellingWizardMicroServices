@@ -1,4 +1,3 @@
-
 name: Build and deploy ASP.Net Core app to Azure Web App - user-operations-microservice
 
 on:
@@ -44,6 +43,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: .net-app
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -52,3 +52,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09225BE891F465ABCFFE3DDBE38F353 }}
           package: .
+
+      - name: Overwrite appsettings.json with appsettings.Development.json
+        run: |
+          cp -f UserOperationsMicroService/appsettings.Development.json UserOperationsMicroService/appsettings.json
