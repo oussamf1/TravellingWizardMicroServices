@@ -53,6 +53,4 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F09225BE891F465ABCFFE3DDBE38F353 }}
           package: .
 
-      - name: Overwrite appsettings.json with appsettings.Development.json
-        run: |
-          cat  UserOperationsMicroService/appsettings.Development.json UserOperationsMicroService/appsettings.json
+     
