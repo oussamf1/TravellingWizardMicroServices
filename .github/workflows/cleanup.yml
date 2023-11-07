@@ -1,0 +1,17 @@
+name: Remove old artifacts
+
+on:
+  push: # Trigger the workflow on push events
+    branches:
+      - main # You can specify the branch you want to trigger on
+
+jobs:
+  remove-old-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - name: Remove old artifacts
+      uses: c-hive/gha-remove-artifacts@v1
+      with:
+        age: '1 month' 
