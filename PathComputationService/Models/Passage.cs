@@ -18,7 +18,7 @@
             Carrier = carrier;
             Arrival_utc = arrivalUtc;
             Departure_utc = departureUtc;
-            Passage_id = Carrier + passage_id.ToString();
+            Passage_id =  passage_id.ToString();
         }
     }
 }

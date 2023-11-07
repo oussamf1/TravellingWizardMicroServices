@@ -8,6 +8,8 @@ namespace BackgroundTasksMicroService.Configuration.Interface
 {
     public interface IAppConfiguration
     {
+        public string ApiKey { get; set; }
+
         public string DatabaseConnectionString { get; set; }
 
         public string FrontEndURl { get; set; }

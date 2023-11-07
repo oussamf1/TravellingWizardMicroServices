@@ -39,8 +39,7 @@ namespace PathComputationMicroService.DataSources.Concrete
         }
         public async Task<List<FlightstInfo>> GetFlights(VacationPlan vacation_plan)
         {
-
-            string[] cities_to_visit = vacation_plan.CityDaysStayed.Keys.ToArray();
+            string[] cities_to_visit = vacation_plan.CityDaysStayed.Select(location => location.City.IATA).ToArray();
             string startDate = FormatDate(vacation_plan.Vacation_start_date);
             string endDate = FormatDate(vacation_plan.Vacation_end_date);
             List<FlightstInfo> flightstInfos = new List<FlightstInfo>();

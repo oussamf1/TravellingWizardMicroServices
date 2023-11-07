@@ -1,10 +1,15 @@
-﻿using UserOperationsMicroService.Configuration.Concrete;
-using UserOperationsMicroService.Configuration.Interface;
+﻿using Shared.Configuration.Interface;
 using Shared.Models;
-using UserOperationsMicroService.Services.Interface;
-using UserOperationsMicroService.Utils;
+using Shared.Services.Interface;
+using Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UserOperationsMicroService.Services.Concrete
+namespace Shared.Services.Concrete
 {
     public class JwtTokenOpsServicecs : IJwtTokenOpsServicecs
     {
@@ -27,9 +32,19 @@ namespace UserOperationsMicroService.Services.Concrete
             return jwtTokenOps.getUserIdFromToken(jwtToken);
         }
 
+        public bool IsValidUser(string jwtToken)
+        {
+            return jwtTokenOps.IsValidUser(jwtToken);
+        }
+
         public string VerifyToken(string jwtToken)
         {
             return jwtTokenOps.VerifyToken(jwtToken);
+        }
+
+        public List<Claim> GetClaimsFromToken(string jwtToken)
+        {
+            return jwtTokenOps.GetClaimsFromToken(jwtToken);
         }
     }
 }

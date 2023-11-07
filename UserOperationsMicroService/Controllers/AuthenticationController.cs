@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Shared.Services.Interface;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
+using Shared.Configuration.Interface;
 using UserOperationsMicroService.DTOs;
 using UserOperationsMicroService.Services.Interface;
 using UserOperationsMicroService.Utils;
@@ -17,11 +15,14 @@ namespace UserOperationsMicroService.Controllers
         private readonly IUserService _userService;
         private readonly IJwtTokenOpsServicecs _jwtTokenOpsServicecs;
         private readonly IUserActionsService _userActionsService;
-        public AuthenticationController(IUserActionsService userActionsService, IJwtTokenOpsServicecs jwtTokenOpsServicecs)
+        private readonly IAppConfiguration _appConfiguration;
+        public AuthenticationController(IAppConfiguration appConfiguration,IUserActionsService userActionsService, IJwtTokenOpsServicecs jwtTokenOpsServicecs)
         {
             _userActionsService = userActionsService;
 
             _jwtTokenOpsServicecs = jwtTokenOpsServicecs;
+
+            _appConfiguration = appConfiguration;
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register (UserRegistrationDTO userResgistrationDto)
@@ -119,7 +120,7 @@ namespace UserOperationsMicroService.Controllers
 
             if (result)
             {
-                return Ok("Account confirmed successfully.");
+                return Redirect(_appConfiguration.FrontEndUrl);
             }
             else
             {

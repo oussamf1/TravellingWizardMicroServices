@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using UserOperationsMicroService.Configuration.Interface;
+using Shared.Configuration.Interface;
 using Shared.Models;
 using System.Security.Claims;
 using Newtonsoft.Json.Linq;
@@ -57,11 +57,21 @@ namespace UserOperationsMicroService.Utils
             return token.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
 
         }
+        public bool IsValidUser(string jwtToken)
+        {
+            var token = tokenHandler.ReadJwtToken(jwtToken);
+            return token.Claims.FirstOrDefault(c => c.Type == "email")?.Value != null;
+        }
         public int getUserIdFromToken(string jwtToken)
         {
             var token = tokenHandler.ReadJwtToken(jwtToken);
             var IdStr= token.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             return int.Parse(IdStr);
+        }
+        public List<Claim> GetClaimsFromToken(string jwtToken)
+        {
+            var token = tokenHandler.ReadJwtToken(jwtToken);
+            return token.Claims.ToList();
         }
 
     }

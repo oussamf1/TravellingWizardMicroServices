@@ -14,7 +14,10 @@
 
   <ItemGroup>
     <Folder Include="DataSources\Concrete\" />
-    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

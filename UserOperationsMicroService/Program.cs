@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using UserOperationsMicroService.Configuration.Concrete;
-using UserOperationsMicroService.Configuration.Interface;
+using Shared.Configuration.Concrete;
+using Shared.Configuration.Interface;
 using Shared.Data;
 using UserOperationsMicroService.Services.Concrete;
 using UserOperationsMicroService.Services.Interface;
@@ -11,6 +11,9 @@ using Shared.Services.Interface;
 using Shared.Services.Concrete;
 using Shared.Repos.Interface;
 using Shared.Repos.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using static Shared.Authentication.JwtCookieAuthentication.JwtCookieAuthenticationHandler;
+using static Shared.Authentication.JwtCookieAuthentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,16 +35,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(appConfig.DatabaseConnectionString, sqlServerOptions => sqlServerOptions.MigrationsAssembly("UserOperationsMicroService")));
 
-builder.Services.AddScoped<IAppConfiguration>(_ => appConfig);
+builder.Services.AddTransient<IAppConfiguration>(_ => appConfig);
 builder.Services.AddScoped<IUserRepo,UserRepo>();
 builder.Services.AddScoped<IVacationPlanRepo,VacationPlanRepo>();
 builder.Services.AddScoped<IEmailTemplateRepo, EmailTemplateRepo>();
 builder.Services.AddScoped<IVacationPlanService,VacationPlanService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordComputationService,PasswordComputationService>();
-builder.Services.AddScoped<IJwtTokenOpsServicecs,JwtTokenOpsServicecs>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IUserActionsService, UserActionsService>();
+builder.Services.AddScoped<IJwtTokenOpsServicecs, JwtTokenOpsServicecs>();
 
 
 builder.Services.AddCors(options =>
@@ -54,25 +57,13 @@ builder.Services.AddCors(options =>
                .AllowCredentials();
     });
 });
+builder.Services.AddAuthentication("JwtCookieAuthentication")
+             .AddScheme<JwtCookieAuthenticationOptions, JwtCookieAuthenticationHandler>("JwtCookieAuthentication", options =>
+             {
+                options.CookieName = "jwtToken";                         
+             });
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(jwt =>
-{
-    var jwtsecret = Encoding.ASCII.GetBytes(appConfig.JwtSecret);
-    jwt.SaveToken = true;
-    jwt.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(jwtsecret),
-        ValidateIssuer = false ,
-        ValidateAudience = false ,
-        ValidateLifetime = true ,
-    };
-});
+
 
 var app = builder.Build();
 
@@ -95,6 +86,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowClientFront");
+
 
 app.UseAuthentication();
 

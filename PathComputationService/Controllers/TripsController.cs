@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PathComputationMicroService.DTOs;
 using PathComputationMicroService.Models;
 using PathComputationMicroService.Services.Concrete;
@@ -15,8 +16,19 @@ namespace PathComputationMicroService.Controllers
         {
             _pathComputationService = pathComputationService;
         }
-        [HttpPost(Name = "GetVacation")]
-        public async Task<IEnumerable<TripsPlan>> Get(VacationPlanDTO plan)
+        [HttpPost("getPlansForUser")]
+        [Authorize(AuthenticationSchemes = "JwtCookieAuthentication")]
+        public async Task<IEnumerable<TripsPlan>> GetTripsForUser(VacationPlanDTO plan)
+        {
+            return await Get(plan);
+        }
+        [HttpPost("getPlansForService")]
+        [Authorize(AuthenticationSchemes = "ApiKeyAuthentication")]
+        public async Task<IEnumerable<TripsPlan>> GetTripsForService(VacationPlanDTO plan)
+        {
+            return await Get(plan);
+        }
+        private async Task<IEnumerable<TripsPlan>> Get(VacationPlanDTO plan)
         {
             DateTime start =  DateTime.Parse(plan.VacationStartDate);
             DateTime end = DateTime.Parse(plan.VacationEndDate);

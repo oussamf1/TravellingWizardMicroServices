@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Models;
 using Shared.Services.Interface;
 using System.Numerics;
@@ -26,6 +27,7 @@ namespace UserOperationsMicroService.Controllers
         }
        
         [HttpPost("add")]
+        [Authorize]
         public async Task<IActionResult> Add(VacationPlanDTO plan)
         {
             try

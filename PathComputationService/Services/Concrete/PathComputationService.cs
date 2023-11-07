@@ -25,7 +25,8 @@ namespace PathComputationMicroService.Services.Concrete
      
         public Task<IEnumerable<TripsPlan>> GetTrips(VacationPlan vacationPlan)
         {
-            string[] cities_to_visit = vacationPlan.CityDaysStayed.Keys.ToArray();
+            string[] cities_to_visit = vacationPlan.CityDaysStayed.Select(location => location.City.IATA).ToArray();
+
             List<Trip> trips = await Combine_Trips(vacationPlan);
             vacation_plan_graph.AddVertex(vacationPlan.Starting_Location.City_code);
             vacation_plan_graph.AddVertex(vacationPlan.Ending_Location.City_code);

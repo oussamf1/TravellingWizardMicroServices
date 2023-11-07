@@ -77,7 +77,9 @@ namespace BackgroundTasksMicroService
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                string url = "https://localhost:7080/Trips";
+                string url = $"{_appConfiguration.ComputationMicroserviceUrl}/Trips/getPlansForService";
+
+                httpClient.DefaultRequestHeaders.Add("ApiKey", _appConfiguration.ApiKey); 
 
                 HttpResponseMessage response = await httpClient.PostAsJsonAsync(url, vacationPlanDTO);
 

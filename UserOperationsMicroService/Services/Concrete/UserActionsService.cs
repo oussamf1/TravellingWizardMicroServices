@@ -5,7 +5,7 @@ using System.Text.Json;
 using Shared.Services.Interface;
 using Shared.Repos.Interface;
 using Shared.Models;
-using UserOperationsMicroService.Configuration.Interface;
+using Shared.Configuration.Interface;
 using EllipticCurve;
 
 namespace UserOperationsMicroService.Services.Concrete

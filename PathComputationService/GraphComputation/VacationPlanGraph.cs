@@ -220,7 +220,11 @@ namespace PathComputationMicroService.GraphComputation
             }
         private static bool TripHasValidStay(Trip lastTrip, Trip nextTrip, VacationPlan vacationPlan)
         {
-            int stay_duration = vacationPlan.CityDaysStayed[lastTrip.Trip_ending_location.City_code];
+            string cityCode = lastTrip.Trip_ending_location.City_code;
+            int stay_duration = vacationPlan.CityDaysStayed
+                           .Where(location => location.City.IATA == lastTrip.Trip_ending_location.City_code)
+                           .Select(location => location.stayDuration)
+                           .FirstOrDefault();
             if ((!lastTrip.Trip_route.Last().Arrival_utc.HasValue || !nextTrip.Trip_route.First().Departure_utc.HasValue ||
                  (lastTrip.Trip_route.Last().Arrival_utc.Value.AddDays(stay_duration).CompareTo(nextTrip.Trip_route.First().Departure_utc.Value) < 0)
                  && (lastTrip.Trip_route.Last().Arrival_utc.Value.AddDays(stay_duration).AddHours(30).CompareTo(nextTrip.Trip_route.First().Departure_utc.Value) > 0)))

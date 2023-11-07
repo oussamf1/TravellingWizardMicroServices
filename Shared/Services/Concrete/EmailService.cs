@@ -82,7 +82,7 @@ namespace Shared.Services.Concrete
         {
             string subject = GetEmailSubject(EmailType.Confirmation);
             string emailTemplate =await GetEmailContent(EmailType.Confirmation);
-            emailTemplate = emailTemplate.Replace("{email}", user.Email);
+            emailTemplate = emailTemplate.Replace("{email}", user.FirstName);
             emailTemplate = emailTemplate.Replace("{confirmationLink}", confirmationUrl);
             sendEmail(user.Email, subject, emailTemplate);
         }
