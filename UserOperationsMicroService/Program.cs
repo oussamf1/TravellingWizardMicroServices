@@ -51,7 +51,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowClientFront", builder =>
     {
-        builder.WithOrigins(appConfig.FrontEndUrl)
+        builder.WithOrigins("https://happy-moss-079f83603.4.azurestaticapps.net")
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
