@@ -17,6 +17,7 @@ namespace PathComputationMicroService.Controllers
             _pathComputationService = pathComputationService;
         }
         [HttpPost("getPlansForUser")]
+        [Authorize(AuthenticationSchemes = "JwtCookieAuthentication")]
         public async Task<IEnumerable<TripsPlan>> GetTripsForUser(VacationPlanDTO plan)
         {
             return await Get(plan);
