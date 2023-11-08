@@ -40,14 +40,13 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = "ApiKeyAuthentication";
 }).AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>("ApiKeyAuthentication", options => { });
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = "JwtCookieAuthentication";
-    options.DefaultChallengeScheme = "JwtCookieAuthentication";
-}).AddScheme<JwtCookieAuthenticationOptions, JwtCookieAuthenticationHandler>("JwtCookieAuthentication", options =>
-{
-    options.CookieName = "jwtToken";
-});
+
+builder.Services.AddAuthentication("JwtCookieAuthentication")
+             .AddScheme<JwtCookieAuthenticationOptions, JwtCookieAuthenticationHandler>("JwtCookieAuthentication", options =>
+             {
+                 options.CookieName = "jwtToken";
+             });
+
 
 builder.Services.AddTransient<IAppConfiguration>(_ => appConfig);
 builder.Services.AddScoped<IPathComputationService, PathComputationService>();
