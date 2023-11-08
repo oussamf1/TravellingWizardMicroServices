@@ -54,7 +54,6 @@ namespace Shared.Services.Concrete
                     return "Welcome to Our Service";
                 case EmailType.SuggestPlans:
                     return "Vacation plans by Travelling Wizard";
-
                 default:
                     return "Default Email Body";
             }
@@ -64,14 +63,11 @@ namespace Shared.Services.Concrete
             switch (emailType)
             {
                 case EmailType.Confirmation:
-                    var emailTemplate1 = await _emailTemplateRepo.Get(2);
+                    var emailTemplate1 = await _emailTemplateRepo.GetByType("Confirmation");
                     return emailTemplate1.Content;
-                case EmailType.Registration:
-                    var emailTemplate2 = await _emailTemplateRepo.Get(1);
-                    return emailTemplate2.Content;
                 case EmailType.SuggestPlans:
-                    return "Vacation plans by Travelling Wizard";
-
+                    var emailTemplate2 = await _emailTemplateRepo.GetByType("SuggestPlans");
+                    return emailTemplate2.Content;
                 default:
                     return "Default Email Body";
             }
@@ -89,12 +85,8 @@ namespace Shared.Services.Concrete
 
         public async Task SendSuggestedPlans(User user, IEnumerable<TripsPlan> plans, string emailContent, string submissionDate, string frontEndUrl)
         {
-            string subject = GetEmailSubject(EmailType.Confirmation);
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string templateFolderPath = Path.Combine(currentDirectory, "EmailTemplates");
-            string templateFileName = "suggested-plans-email.html";
-            string templateFilePath = Path.Combine(templateFolderPath, templateFileName);
-            string emailTemplate = File.ReadAllText(templateFilePath);
+            string subject = GetEmailSubject(EmailType.SuggestPlans);
+            string emailTemplate = await GetEmailContent(EmailType.SuggestPlans);
             string fullName = user.FirstName + " " + user.LastName;
             emailTemplate = emailTemplate.Replace("{SubmissionDate}", submissionDate);
             emailTemplate = emailTemplate.Replace("{plansContentInHTML}", emailContent);

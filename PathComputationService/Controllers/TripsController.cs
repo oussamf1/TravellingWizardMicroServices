@@ -16,11 +16,13 @@ namespace PathComputationMicroService.Controllers
         {
             _pathComputationService = pathComputationService;
         }
+
         [HttpPost("getPlansForUser")]
         public async Task<IEnumerable<TripsPlan>> GetTripsForUser(VacationPlanDTO plan)
         {
             return await Get(plan);
         }
+
         [HttpPost("getPlansForService")]
         [Authorize(AuthenticationSchemes = "ApiKeyAuthentication")]
         public async Task<IEnumerable<TripsPlan>> GetTripsForService(VacationPlanDTO plan)

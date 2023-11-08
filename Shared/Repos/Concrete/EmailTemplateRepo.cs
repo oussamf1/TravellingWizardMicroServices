@@ -1,4 +1,5 @@
-﻿using Shared.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Data;
 using Shared.Models;
 using Shared.Repos.Interface;
 using System;
@@ -18,5 +19,10 @@ namespace Shared.Repos.Concrete
             _dbContext = context;
         }
 
+        public async Task<EmailTemplate> GetByType(string type)
+        {
+            var emailTemplate = await _dbContext.EmailTemplates.FirstOrDefaultAsync(template => template.Type == type);
+            return emailTemplate;
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace Shared.Repos.Interface
 {
     public interface IEmailTemplateRepo : IGenericRepo<EmailTemplate>
     {
+        public Task<EmailTemplate> GetByType(string type);
 
     }
 }
